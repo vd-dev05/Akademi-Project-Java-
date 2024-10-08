@@ -1,9 +1,13 @@
 package com.akademi.akademi.dto.request;
 
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 public class UserCreationRequest {
+    @Size(min = 3 , message = "User must be at 3 charaters")
     private String username;
+    @Size(min = 8,message = "Password must be  at least 8 characters")
     private String password;
     private String firstName;
     private String lastname;
