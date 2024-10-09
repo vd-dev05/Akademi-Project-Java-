@@ -1,5 +1,6 @@
 package com.akademi.akademi.controller;
 
+import com.akademi.akademi.dto.request.ApiResponse;
 import com.akademi.akademi.dto.request.UserCreationRequest;
 import com.akademi.akademi.dto.request.UserUpdateRequest;
 import com.akademi.akademi.entiny.User;
@@ -17,8 +18,11 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    User createUser(@RequestBody @Valid UserCreationRequest request) {
-       return userService.createRequest(request);
+    ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request) {
+        ApiResponse<User> apiResponse = new ApiResponse<>();
+        apiResponse.setCode(1000);
+        apiResponse.setResult(userService.createRequest(request));
+        return apiResponse;
     }
     @GetMapping
     List<User> getUsers() {

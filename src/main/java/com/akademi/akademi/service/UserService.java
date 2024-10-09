@@ -3,6 +3,8 @@ package com.akademi.akademi.service;
 import com.akademi.akademi.dto.request.UserCreationRequest;
 import com.akademi.akademi.dto.request.UserUpdateRequest;
 import com.akademi.akademi.entiny.User;
+import com.akademi.akademi.exception.AppException;
+import com.akademi.akademi.exception.ErrorCode;
 import com.akademi.akademi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,7 @@ public class UserService {
     public User createRequest(UserCreationRequest request) {
         User user = new User();
         if (userRepository.existsByUsername(request.getUsername()))
-            throw new RuntimeException("User exitsted") ;
+//            throw new AppException(ErrorCode.USER_EXISTED ) ;
 
         user.setUsername(request.getUsername());
         user.setPassword(request.getPassword());
